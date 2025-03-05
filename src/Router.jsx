@@ -1,3 +1,4 @@
+import NotFoundPage from "./components/NotFoundPage";
 import NavigatePage from "./pages/NavigatePage";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
@@ -6,7 +7,7 @@ import Main from "./pages/main/Main";
 import Products from "./pages/products/Products";
 
 export const router = [
-  { path: "", element: <NavigatePage /> },
+  { path: "/", element: <NavigatePage /> },
   {
     path: "/:lang",
     element: <Layout />,
@@ -15,6 +16,8 @@ export const router = [
       { path: "products", element: <Products /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
+  { path: "*", element: <NotFoundPage /> },
 ];

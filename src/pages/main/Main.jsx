@@ -16,7 +16,6 @@ const Main = () => {
   }, []);
 
   const { data, error, isLoading } = useGetTranslations();
-  // console.log(data);
   const { parseHTMLString } = useParseHTML();
 
   const { lang } = useParams();

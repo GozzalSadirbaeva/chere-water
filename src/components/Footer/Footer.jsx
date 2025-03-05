@@ -67,7 +67,7 @@ const Footer = () => {
                   Saidoff.group
                 </span>
               </p>
-              <p className="font-semibold md:text-2xl leading-5 md:leading-[32px]">
+              <p className="font-semibold md:text-2xl leading-5 md:leading-[32px] text-[#9B9B9B]">
                 © 2024 Chere Water
               </p>
               <div className="flex gap-10 self-center">
