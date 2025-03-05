@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  font-family: "Darker Grotesque", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.container {
+  max-width: 1640px;
+  width: 100%;
+  margin: 0 auto;
+}
+.inter {
+  font-family: "Inter", serif;
+}
+.mont {
+  font-family: "Montserrat", serif;
+}
+.nav-text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32.54px;
+  color: #4d566a;
+  transition: all 0.3s ease;
+}
+
+.nav-text:hover,
+.nav-text.active {
+  padding: 6px 20px;
+  border-radius: 100px;
+  background-color: white;
+  color: #1a367c;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.btn-bg {
+  background: linear-gradient(92.37deg, #1a367c 58.64%, #af8c4b 99.62%);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+.btn-bg-second {
+  background: radial-gradient(
+    49.89% 132.67% at 52.01% 132.67%,
+    #cca55d 0%,
+    #1a367c 49.3%
+  );
+}
+
+.nav-container {
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.text-color {
+  background: linear-gradient(
+    178.58deg,
+    #000000 12.1%,
+    #1a367c 43.88%,
+    #000000 58.22%,
+    #1a367c 89.61%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-color-second {
+  background: linear-gradient(179.82deg, #000000 11.76%, #1a367c 78.85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-color-white {
+  background: linear-gradient(179.82deg, #ffffff 11.76%, #bdc7e1 78.85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-color-third {
+  background: linear-gradient(179deg, #ffffff 49.01%, #bdc7e1 78.13%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-color-fourth {
+  background: linear-gradient(
+    91.11deg,
+    #1a3b8d 1.41%,
+    #000000 5.84%,
+    #000000 48.2%,
+    #cca55d 74.68%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.order {
+  background-image: url(/public/buyurtma-line.svg);
+  background-repeat: no-repeat;
+}
+.capitalize-each-word {
+  text-transform: capitalize;
+}
+.bg-line {
+  background-image: url(/public/bg-line2.svg);
+}
+.footer-text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32.54px;
+  color: #4d566a;
+  transition: all 0.3s ease;
+}
+.border-btn {
+  backdrop-filter: blur(10px);
+  border: 1px solid #ffffff99;
+}
+.bg-circle {
+  background-image: url(/public/Cycle-line.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.line-about {
+  background-image: url(/public/line-about.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.contact-line {
+  background-image: url(/public/contact-line.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
