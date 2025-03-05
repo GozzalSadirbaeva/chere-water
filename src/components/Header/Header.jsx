@@ -79,23 +79,23 @@ export default function Header() {
       </button>
 
       <div className="flex gap-4">
-        <div
-          className={`text-2xl w-[50px] h-full flex items-center justify-center cursor-pointer font-semibold ${
+        <button
+          className={`text-3xl w-[50px] h-full flex items-center justify-center cursor-pointer font-semibold ${
             lang === "uz" ? "text-[#DDAE57]" : "text-[#8996A6]"
           }`}
           onClick={() => changeLanguage("uz")}
         >
           Uzb
-        </div>
+        </button>
 
-        <div
-          className={`text-2xl w-[50px] cursor-pointer h-full flex items-center justify-center font-semibold ${
+        <button
+          className={`text-3xl w-[50px] cursor-pointer h-full flex items-center justify-center font-semibold ${
             lang === "ru" ? "text-[#DDAE57]" : "text-[#8996A6]"
           }`}
           onClick={() => changeLanguage("ru")}
         >
           Rus
-        </div>
+        </button>
       </div>
 
       <div

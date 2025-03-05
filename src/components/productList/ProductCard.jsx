@@ -15,7 +15,7 @@ const ProductCard = ({ product, translations, parseHTMLString, lang }) => {
   const { imageUrl, isLoading, error } = useImageByKey(product.imageKey);
 
   return (
-    <div className="bg-white shadow-lg rounded-3xl md:pl-[176px] px-[21px] md:py-[114px] pt-5 pb-[37px] flex md:flex-row flex-col md:gap-[178px] gap-[37px]">
+    <div className="bg-white shadow-lg rounded-3xl md:pl-[100px] px-[21px] md:py-[114px] pt-5 pb-[37px] flex md:flex-row flex-col md:gap-[178px] gap-[37px]">
       {isLoading ? (
         <p>Loading image...</p>
       ) : error ? (
@@ -50,7 +50,7 @@ const ProductCard = ({ product, translations, parseHTMLString, lang }) => {
         </div>
 
         <button
-          className="btn-bg md:px-[51px] px-[43px] md:py-[27px] py-3 font-medium md:text-[32px] text-[18px] md:leading-10 leading-6 text-white rounded-2xl md:w-[355px] md:w-[200px]"
+          className="btn-bg md:px-[51px] px-[43px] md:py-[27px] py-3 font-medium md:text-[32px] text-[18px] md:leading-10 leading-6 text-white rounded-2xl md:w-[355px] "
           onClick={() => {
             window.open("https://t.me/cheredevbot", "_blank");
           }}

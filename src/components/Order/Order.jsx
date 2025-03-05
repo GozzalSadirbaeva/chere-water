@@ -99,7 +99,7 @@ export default function Order() {
         />
         <button
           type="submit"
-          className="bg-[#DDAE57] inter font-medium md:text-2xl text-lg md:leading-7 leading-5 text-white rounded-lg md:px-[66px] py-[17px] px-[58px] md:ml-16  md:mx-0 mt-5 md:mt-0"
+          className="bg-[#DDAE57] inter font-medium md:text-2xl text-lg md:leading-7 leading-5 text-white rounded-lg py-[17px] px-[58px] md:ml-16  md:mx-0 mt-5 md:mt-0"
         >
           {parseHTMLString(t("order-place"))}
         </button>

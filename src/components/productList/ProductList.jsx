@@ -39,6 +39,7 @@ const ProductList = () => {
       id: 4,
       size: "product-card4",
       description: "product-card-text4",
+      imageKey: "bottle-20",
       elements: {
         name: [
           "Calcium",

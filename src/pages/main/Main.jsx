@@ -42,8 +42,8 @@ const Main = () => {
       {isLoading ? (
         <Spinner animation="border" />
       ) : (
-        <div className="relative">
-          <div className="bg-[url(/banner.svg)] bg-cover bg-center">
+        <div className="relative ">
+          <div className="bg-[url(/banner.svg)] bg-cover bg-center md:px-8 px-4">
             <header>
               <Header />
             </header>
@@ -51,13 +51,13 @@ const Main = () => {
               <div className="grid md:grid-cols-2 grid-cols-1 lg:text-left relative md:pt-[192px] pt-[100px]">
                 <div className="flex flex-col h-full  m-auto">
                   <h1
-                    className="md:block hidden text-color font-bold text-[48px] md:text-[96px] leading-[50px] md:leading-[84px] pb-12 sm:text-center md:text-left text-center md:px-8 px-4"
+                    className="md:block hidden text-color font-bold text-[48px] md:text-[96px] leading-[50px] md:leading-[84px] pb-12 sm:text-center md:text-left text-center "
                     dangerouslySetInnerHTML={{
                       __html: parseHTMLString(t("home-h1")),
                     }}
                   ></h1>
                   <h1
-                    className="md:hidden block text-color font-bold text-[48px] md:text-[96px] leading-[50px] md:leading-[84px] pb-12 sm:text-center md:text-left text-center md:px-8 px-4"
+                    className="md:hidden block text-color font-bold text-[48px] md:text-[96px] leading-[50px] md:leading-[84px] pb-12 sm:text-center md:text-left text-center "
                     dangerouslySetInnerHTML={{
                       __html: parseHTMLString(t("home-h1-m")),
                     }}
@@ -85,7 +85,7 @@ const Main = () => {
                     }}
                   ></button>
                 </div>
-                <div className="hidden md:block max-w-[400px] md:max-w-[857px] md:absolute md:right-[-100px] top-[-50px]">
+                <div className="hidden md:block max-w-[400px] md:max-w-[700px] md:absolute md:right-[-20px] top-[0px]">
                   <img
                     src="/banner-product.png"
                     alt="Banner Product"
@@ -99,7 +99,7 @@ const Main = () => {
             </section>
           </div>
 
-          <section className="container pt-40 md:pt-[99px] md:pb-[279px] pb-[215px]">
+          <section className="container pt-40 md:pt-[99px] md:pb-[279px] pb-[215px] md:px-8 px-4">
             <h2
               className="text-color-second font-bold text-[48px] md:text-[72px] leading-[50px] md:leading-[80px] text-center md:text-left pb-4"
               dangerouslySetInnerHTML={{
@@ -153,7 +153,7 @@ const Main = () => {
                 </div>
               </div>
             </div>
-            <div className="container pt-[600px] md:pt-[327px] pb-20 md:pb-[153px]">
+            <div className="container pt-[600px] md:pt-[327px] pb-20 md:pb-[153px] md:px-8 px-4">
               <h2
                 className="text-color font-bold text-[48px] md:text-[72px] leading-[50px] md:leading-[80px] pb-10 md:pb-[78px] md:text-left text-center"
                 dangerouslySetInnerHTML={{
@@ -165,7 +165,7 @@ const Main = () => {
           </section>
 
           <section className="bg-[#0f1219] bg-line py-20 md:py-[158px] mt-20 md:mt-[247px] bg-cover relative">
-            <div className="container flex flex-col lg:flex-row justify-between text-center lg:text-left">
+            <div className="container flex flex-col lg:flex-row justify-between text-center lg:text-left md:px-8 px-4">
               <div className="md:w-[768px]">
                 <h2
                   className="text-white font-bold text-[48px] md:text-[72px] leading-[50px] md:leading-[80px] pb-6"
@@ -174,7 +174,7 @@ const Main = () => {
                   }}
                 ></h2>
                 <h3
-                  className="inter font-normal text-lg md:text-[30px] leading-8 md:leading-10 text-[#8DA1D0] md:pb-8 pb-[75px] px-8"
+                  className="inter font-normal text-lg md:text-[30px] leading-8 md:leading-10 text-[#8DA1D0] md:pb-8 pb-[75px]"
                   dangerouslySetInnerHTML={{
                     __html: parseHTMLString(t("home-delivery-text")),
                   }}
@@ -193,7 +193,7 @@ const Main = () => {
                   <img src="/line-order.svg" alt="" />
                 </button>
               </div>
-              <div className="w-[300px] md:w-[300px] lg:w-[440px] mx-auto mt-10 lg:mt-0 md:absolute top-[-150px] right-0">
+              <div className="w-[300px] md:w-[300px] lg:w-[440px] mx-auto mt-10 lg:mt-0 md:absolute top-[-150px] right-[20px]">
                 <img
                   src="/box.svg"
                   alt="Box"
