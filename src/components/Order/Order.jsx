@@ -6,13 +6,16 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetTranslations, usePostContactUs } from "../../api";
 import useParseHTML from "../../hooks/useParseHTML";
+import useContactForm from "../../hooks/useContactForm";
 
 export default function Order() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const { parseHTMLString } = useParseHTML();
+  const [message, setMessage] = useState("");
 
   const { data, error, isLoading } = useGetTranslations();
+  const { name, phone, errors, isPending, handleChange, handleOrder } =
+  useContactForm();
+  
   const { lang } = useParams();
   const translations = data?.items || [];
 
@@ -22,49 +25,62 @@ export default function Order() {
     return isHTML ? parseHTMLString(text) : text;
   };
 
-  const { mutate, isPending } = usePostContactUs();
+  // const { mutate, isPending } = usePostContactUs();
 
-  const handleOrder = async (e) => {
-    e.preventDefault();
+  // const validateName = (value) => {
+  //   if (!/^[a-zA-Z]+$/.test(value)) {
+  //     return "Ism faqat harflardan iborat bo‘lishi kerak!";
+  //   }
+  //   return "";
+  // };
 
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(name)) {
-      toast.error("Ism faqat harflardan iborat bo‘lishi kerak!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return;
-    }
+  // const validatePhone = (value) => {
+  //   if (!/^\+998\d{9}$/.test(value)) {
+  //     return "Telefon raqami +998 bilan boshlanishi va 9 ta raqam bo‘lishi kerak!";
+  //   }
+  //   return "";
+  // };
 
-    const phoneRegex = /^\+998\d{9}$/;
-    if (!phoneRegex.test(phone)) {
-      toast.error("Telefon raqam +998 bilan boshlanishi va 13 ta belgidan iborat bo‘lishi kerak!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return;
-    }
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   if (name === "name") {
+  //     setName(value);
+  //     setErrors((prev) => ({ ...prev, name: validateName(value) }));
+  //   } else if (name === "phone") {
+  //     setPhone(value);
+  //     setErrors((prev) => ({ ...prev, phone: validatePhone(value) }));
+  //   }
+  // };
 
-    mutate(
-      { name, phone },
-      {
-        onSuccess: () => {
-          toast.success("Buyurtma muvaffaqiyatli jo‘natildi!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-          setName("");
-          setPhone("");
-        },
-        onError: () => {
-          toast.error("Xatolik yuz berdi, iltimos qayta urinib ko‘ring!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        },
-      }
-    );
-  };
+  // const handleOrder = (e) => {
+  //   e.preventDefault();
+
+  //   const nameError = validateName(name);
+  //   const phoneError = validatePhone(phone);
+  //   if (nameError || phoneError) {
+  //     setErrors({ name: nameError, phone: phoneError });
+  //     return;
+  //   }
+
+  //   mutate(
+  //     { name, phone },
+  //     {
+  //       onSuccess: () => {
+  //         setMessage("Muvaffaqiyatli yuborildi! ✅");
+  //         setName("");
+  //         setPhone("");
+  //         setErrors({ name: "", phone: "" });
+  //         toast.success("Muvaffaqiyatli yuborildi! ✅");
+  //       },
+  //       onError: () => {
+  //         setMessage("Xatolik yuz berdi. ❌");
+  //         toast.error("Xatolik yuz berdi. ❌");
+  //       },
+  //     }
+  //   );
+  //   console.log(mutate);
+    
+  // };
 
   return (
     <div className="container bg-[#1a367c] order text-white pt-[72px] pb-20 rounded-2xl mt-10 px-7">
@@ -81,27 +97,46 @@ export default function Order() {
         onSubmit={handleOrder}
         className="mt-6 flex flex-col md:flex-row gap-4 md:px-20"
       >
-        <input
-          type="text"
-          placeholder={parseHTMLString(t("order-name"))}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="flex-1 md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base leading-7 rounded-lg text-black outline-none max-w-[520px]"
-          required
-        />
-        <input
-          type="tel"
-          placeholder={parseHTMLString(t("order-phone"))}
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="flex-1 md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base rounded-lg text-black outline-none max-w-[520px]"
-          required
-        />
+        <div className="relative flex-1">
+          <input
+            type="text"
+            name="name"
+            placeholder={parseHTMLString(t("order-name"))}
+            value={name}
+            onChange={handleChange}
+            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base leading-7 rounded-lg text-black outline-none max-w-[520px] w-full"
+            required
+          />
+          {errors.name && (
+            <p className="absolute left-0 text-[#DDAE57] text-base mt-1 ">
+              {errors.name}
+            </p>
+          )}
+        </div>
+
+        <div className="relative flex-1">
+          <input
+            type="tel"
+            name="phone"
+            placeholder={parseHTMLString(t("order-phone"))}
+            value={phone}
+            onChange={handleChange}
+            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base rounded-lg text-black outline-none max-w-[520px] w-full"
+            required
+          />
+          {errors.phone && (
+            <p className="absolute left-0 text-[#DDAE57] text-sm mt-1">
+              {errors.phone}
+            </p>
+          )}
+        </div>
+
         <button
           type="submit"
-          className="bg-[#DDAE57] inter font-medium md:text-2xl text-lg md:leading-7 leading-5 text-white rounded-lg py-[17px] px-[58px] md:ml-16  md:mx-0 mt-5 md:mt-0"
+          className="bg-[#DDAE57] inter font-medium md:text-2xl text-lg md:leading-7 leading-5 text-white rounded-lg md:px-[66px] py-[17px] px-[58px] md:ml-16 md:mx-0 mt-5 md:mt-0"
+          disabled={isPending}
         >
-          {parseHTMLString(t("order-place"))}
+          {isPending ? "Yuborilmoqda..." : parseHTMLString(t("order-place"))}
         </button>
       </form>
     </div>

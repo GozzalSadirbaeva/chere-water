@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetTranslations, usePostContactUs } from "../../api";
+import { useGetTranslations } from "../../api";
 import Header from "../../components/Header/Header";
+import useContactForm from "../../hooks/useContactForm";
 import useParseHTML from "../../hooks/useParseHTML";
 
 const Contact = () => {
@@ -12,10 +13,9 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-
-  const { data, error, isLoading } = useGetTranslations();
+  const { name, phone, errors, isPending, handleChange, handleOrder } =
+    useContactForm();
+  const { data, isLoading } = useGetTranslations();
   const { parseHTMLString } = useParseHTML();
   const { lang } = useParams();
   const translations = data?.items;
@@ -26,60 +26,13 @@ const Contact = () => {
     return isHTML ? parseHTMLString(text) : text;
   };
 
-  const { mutate, isPending } = usePostContactUs();
-
-  const handleOrder = async (e) => {
-    e.preventDefault();
-
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(name)) {
-      toast.error("Ism faqat harflardan iborat bo‘lishi kerak!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      return;
-    }
-
-    const phoneRegex = /^\+998\d{9}$/;
-    if (!phoneRegex.test(phone)) {
-      toast.error(
-        "Telefon raqam +998 bilan boshlanishi va 13 ta belgidan iborat bo‘lishi kerak!",
-        {
-          position: "top-right",
-          autoClose: 3000,
-        }
-      );
-      return;
-    }
-
-    mutate(
-      { name, phone },
-      {
-        onSuccess: () => {
-          toast.success("Buyurtma muvaffaqiyatli jo‘natildi!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-          setName("");
-          setPhone("");
-        },
-        onError: () => {
-          toast.error("Xatolik yuz berdi, iltimos qayta urinib ko‘ring!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        },
-      }
-    );
-  };
-
   return (
     <div>
       {isLoading ? (
         <Spinner animation="border" />
       ) : (
         <div className="container contact-line">
-           <ToastContainer />
+          <ToastContainer />
           <header className="container">
             <Header />
           </header>
@@ -98,36 +51,46 @@ const Contact = () => {
                     __html: parseHTMLString(t("contact-info")),
                   }}
                 ></h2>
-                <h3
-                  className="inter md:text-[22px] text-base md:leading-[34px] leading-6 font-light md:pb-10 pb-12"
-                  dangerouslySetInnerHTML={{
-                    __html: parseHTMLString(t("contact-info-text")),
-                  }}
-                ></h3>
                 <form onSubmit={handleOrder} className="flex flex-col">
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder={parseHTMLString(t("order-name"))}
-                    className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[19px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl md:mb-11 mb-6"
-                    required
-                  />
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder={parseHTMLString(t("order-phone"))}
-                    className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[16px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl md:mb-[100px] mb-14"
-                    required
-                  />
+                  <div className="flex flex-col">
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={handleChange}
+                      placeholder={parseHTMLString(t("order-name"))}
+                      className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[19px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl "
+                      required
+                    />
+                    {errors.name && (
+                      <p className=" text-[#DDAE57] text-base mt-1">
+                        {errors.name}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-col md:mt-11 mt-6 mb-14 md:mb-[100px]">
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={phone}
+                      onChange={handleChange}
+                      placeholder={parseHTMLString(t("order-phone"))}
+                      className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[16px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl  "
+                      required
+                    />
+                    {errors.phone && (
+                      <p className=" text-[#DDAE57] text-sm mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
+                  </div>
                   <button
                     type="submit"
-                    className="py-6 bg-[#DDAE57] text-white inter  md:text-2xl text-base md:leading-7 leading-5 rounded-2xl"
-                    dangerouslySetInnerHTML={{
-                      __html: parseHTMLString(t("send")),
-                    }}
-                  ></button>
+                    className="py-6 bg-[#DDAE57] text-white inter md:text-2xl text-base md:leading-7 leading-5 rounded-2xl"
+                    disabled={isPending}
+                  >
+                    {isPending ? "Yuborilmoqda..." : parseHTMLString(t("send"))}
+                  </button>
                 </form>
               </div>
               <div className="container grid py-10 md:py-0 rounded-3xl md:gap-20 h-[469px] md:px-4 px-10">
