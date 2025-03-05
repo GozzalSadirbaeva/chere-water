@@ -28,7 +28,7 @@ const Main = () => {
     return isHTML ? parseHTMLString(text) : text;
   };
 
-  const { imageUrl, isLoading: imgLoading } = useImageByKey('banner');
+  const { imageUrl, isLoading: imgLoading } = useImageByKey("banner");
   console.log(imageUrl);
 
   const images = imageUrl?.items;
@@ -179,11 +179,13 @@ const Main = () => {
                     __html: parseHTMLString(t("home-delivery-text")),
                   }}
                 ></h3>
-                <button className="border-2 border-[#ffffff63] btn-bg-second px-4 md:px-[36px] py-3 md:py-5 font-semibold text-lg md:text-2xl leading-8 text-white rounded-[88px] md:w-[340px] flex items-center gap-2 mx-auto lg:mx-0">
+                <button
+                  className="border-2 border-[#ffffff63] btn-bg-second px-4 md:px-[36px] py-3 md:py-5 font-semibold text-lg md:text-2xl leading-8 text-white rounded-[88px] md:w-[340px] flex items-center gap-2 mx-auto lg:mx-0"
+                  onClick={() => {
+                    window.open("https://t.me/cheredevbot", "_blank");
+                  }}
+                >
                   <span
-                    onClick={() => {
-                      window.open("https://t.me/cheredevbot", "_blank");
-                    }}
                     dangerouslySetInnerHTML={{
                       __html: parseHTMLString(t("btn-order")),
                     }}
