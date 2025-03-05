@@ -24,64 +24,6 @@ export default function Order() {
     const text = translation ? translation[lang] : key;
     return isHTML ? parseHTMLString(text) : text;
   };
-
-  // const { mutate, isPending } = usePostContactUs();
-
-  // const validateName = (value) => {
-  //   if (!/^[a-zA-Z]+$/.test(value)) {
-  //     return "Ism faqat harflardan iborat bo‘lishi kerak!";
-  //   }
-  //   return "";
-  // };
-
-  // const validatePhone = (value) => {
-  //   if (!/^\+998\d{9}$/.test(value)) {
-  //     return "Telefon raqami +998 bilan boshlanishi va 9 ta raqam bo‘lishi kerak!";
-  //   }
-  //   return "";
-  // };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   if (name === "name") {
-  //     setName(value);
-  //     setErrors((prev) => ({ ...prev, name: validateName(value) }));
-  //   } else if (name === "phone") {
-  //     setPhone(value);
-  //     setErrors((prev) => ({ ...prev, phone: validatePhone(value) }));
-  //   }
-  // };
-
-  // const handleOrder = (e) => {
-  //   e.preventDefault();
-
-  //   const nameError = validateName(name);
-  //   const phoneError = validatePhone(phone);
-  //   if (nameError || phoneError) {
-  //     setErrors({ name: nameError, phone: phoneError });
-  //     return;
-  //   }
-
-  //   mutate(
-  //     { name, phone },
-  //     {
-  //       onSuccess: () => {
-  //         setMessage("Muvaffaqiyatli yuborildi! ✅");
-  //         setName("");
-  //         setPhone("");
-  //         setErrors({ name: "", phone: "" });
-  //         toast.success("Muvaffaqiyatli yuborildi! ✅");
-  //       },
-  //       onError: () => {
-  //         setMessage("Xatolik yuz berdi. ❌");
-  //         toast.error("Xatolik yuz berdi. ❌");
-  //       },
-  //     }
-  //   );
-  //   console.log(mutate);
-    
-  // };
-
   return (
     <div className="container bg-[#1a367c] order text-white pt-[72px] pb-20 rounded-2xl mt-10 px-7">
       <ToastContainer />

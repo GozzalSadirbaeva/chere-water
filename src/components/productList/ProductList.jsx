@@ -54,7 +54,6 @@ const ProductList = () => {
   ];
 
   const { data, error, isLoading } = useGetTranslations();
-  // const { data: products } = useGetProductList();
   const { parseHTMLString } = useParseHTML();
   const { lang } = useParams();
   const translations = data?.items || [];

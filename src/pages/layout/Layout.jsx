@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
 const Layout = () => {
+  const location = useLocation();
+  const isNotFound =
+    location.pathname.includes("404") || location.pathname === "/404";
+
   return (
     <div>
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {!isNotFound && <Footer />}
     </div>
   );
 };

@@ -3,7 +3,6 @@ const baseURL = import.meta.env.VITE_POCKETBASE_URL;
 
 export const useImageByKey = (name) => {
   const { data: imagesData, isLoading, error } = useGetImages();
-  // console.log(imagesData);
 
   if (isLoading) return { imageUrl: null, isLoading, error };
   if (error) return { imageUrl: null, isLoading, error };
