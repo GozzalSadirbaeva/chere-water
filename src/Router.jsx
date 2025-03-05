@@ -16,7 +16,7 @@ export const router = [
       { path: "products", element: <Products /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
-      { path: "*", element: <NotFoundPage /> },
+      // { path: "*", element: <NotFoundPage /> },
     ],
   },
   { path: "*", element: <NotFoundPage /> },
