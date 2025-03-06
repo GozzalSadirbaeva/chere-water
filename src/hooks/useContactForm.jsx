@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { usePostContactUs } from "../api"; 
+import { usePostContactUs } from "../api";
 
 const useContactForm = () => {
   const [name, setName] = useState("");
@@ -46,7 +46,7 @@ const useContactForm = () => {
 
     const nameError = validateName(name);
     const phoneError = validatePhone(phone);
-    
+
     if (nameError || phoneError) {
       setErrors({ name: nameError, phone: phoneError });
       return;
@@ -55,7 +55,7 @@ const useContactForm = () => {
     console.log("Yuborilayotgan ma'lumotlar:", { name, phone });
 
     mutate(
-      { name, phone },
+      { Full_name_: name, Phone_number: phone },
       {
         onSuccess: () => {
           setMessage("Muvaffaqiyatli yuborildi! ✅");

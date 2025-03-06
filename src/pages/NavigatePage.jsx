@@ -4,7 +4,6 @@ import { useGetTranslations } from "../api/index";
 const NavigatePage = () => {
   const navigate = useNavigate();
   const { lang } = useParams();
-  const defaultLang = "uz";
   useEffect(() => {
     if (!(lang === "uz" || lang === "ru")) navigate("uz");
   }, [navigate, lang]);

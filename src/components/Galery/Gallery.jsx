@@ -31,7 +31,7 @@ const Gallery = ({ translations, parseHTMLString, lang }) => {
                 <img
                   src={imageUrl}
                   alt={image.key}
-                  className="w-full h-full object-cover"
+                  className=" w-full h-full object-cover"
                   style={{ borderRadius: "10px" }}
                 />
               )}
