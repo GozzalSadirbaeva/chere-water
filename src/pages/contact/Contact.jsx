@@ -59,7 +59,7 @@ const Contact = () => {
                       value={name}
                       onChange={handleChange}
                       placeholder={parseHTMLString(t("order-name"))}
-                      className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[19px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl "
+                      className="inter md:text-2xl text-base md:leading-7 leading-5 md:py-[22px] py-[16px] md:px-8 px-6 border-[1px] border-[#54576366] rounded-2xl "
                       required
                     />
                     {errors.name && (

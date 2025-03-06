@@ -46,7 +46,7 @@ export default function Order() {
             placeholder={parseHTMLString(t("order-name"))}
             value={name}
             onChange={handleChange}
-            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base leading-7 rounded-lg text-black outline-none max-w-[520px] w-full"
+            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base leading-7 rounded-lg text-black outline-none md:max-w-[520px] w-full"
             required
           />
           {errors.name && (
@@ -63,7 +63,7 @@ export default function Order() {
             placeholder={parseHTMLString(t("order-phone"))}
             value={phone}
             onChange={handleChange}
-            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base rounded-lg text-black outline-none max-w-[520px] w-full"
+            className="md:px-8 px-5 md:py-[22px] py-[15px] inter md:text-2xl text-base rounded-lg text-black outline-none md:max-w-[520px] w-full"
             required
           />
           {errors.phone && (

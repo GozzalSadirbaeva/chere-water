@@ -15,13 +15,17 @@ const ProductCard = ({ product, translations, parseHTMLString, lang }) => {
   const { imageUrl, isLoading, error } = useImageByKey(product.imageKey);
 
   return (
-    <div className="bg-white shadow-lg rounded-3xl md:pl-[100px] px-[21px] md:py-[114px] pt-5 pb-[37px] flex md:flex-row flex-col md:gap-[178px] gap-[37px]">
+    <div className="bg-white shadow-lg rounded-3xl md:pl-[100px] px-[21px] md:py-[114px] pt-5 pb-[37px] flex md:flex-row flex-col justify-between overflow-hidden">
       {isLoading ? (
         <p>Loading image...</p>
       ) : error ? (
         ""
       ) : (
-        <img src={imageUrl} alt={product.imageKey} className="w-[66px] md:w-[166px] self-center" />
+        <img
+          src={imageUrl}
+          alt={product.imageKey}
+          className="w-[66px] md:w-[166px] self-center"
+        />
       )}
 
       <div className="max-w-[1000px]">

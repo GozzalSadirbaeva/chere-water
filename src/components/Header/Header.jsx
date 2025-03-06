@@ -59,7 +59,9 @@ export default function Header() {
             to={href}
             className={({ isActive }) =>
               `nav-text px-4 py-2 rounded-full transition ${
-                isActive ? "bg-white text-blue-800 shadow-md" : "text-gray-600"
+                pathname === href
+                  ? "bg-white text-blue-800 shadow-md"
+                  : "text-gray-600"
               }`
             }
             dangerouslySetInnerHTML={{ __html: label }}
@@ -126,9 +128,9 @@ export default function Header() {
 
           <button className=" btn-bg flex gap-[10px] rounded-3xl text-white border-2 border-white px-8 py-2 items-center mx-auto">
             <span
-            onClick={() => {
-              window.open("https://t.me/cheredevbot", "_blank");
-            }}
+              onClick={() => {
+                window.open("https://t.me/cheredevbot", "_blank");
+              }}
               dangerouslySetInnerHTML={{
                 __html: parseHTMLString(t("btn-order")),
               }}
