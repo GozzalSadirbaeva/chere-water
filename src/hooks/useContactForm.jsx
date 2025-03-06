@@ -14,7 +14,7 @@ const useContactForm = () => {
     if (!value.trim()) {
       return "Ism kiritish majburiy!";
     }
-    if (!/^[a-zA-Z\s]+$/.test(value)) {
+    if (!/^[a-zA-Zа-яА-ЯёЁ\s]+$/.test(value)) {
       return "Ism faqat harflar va bo'sh joylardan iborat bo‘lishi kerak!";
     }
     return "";
@@ -32,12 +32,15 @@ const useContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     if (name === "name") {
-      setName(value);
-      setErrors((prev) => ({ ...prev, name: validateName(value) }));
+      const filteredValue = value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, ""); 
+      setName(filteredValue);
+      setErrors((prev) => ({ ...prev, name: validateName(filteredValue) }));
     } else if (name === "phone") {
-      setPhone(value);
-      setErrors((prev) => ({ ...prev, phone: validatePhone(value) }));
+      const filteredValue = value.replace(/[^0-9+]/g, ""); 
+      setPhone(filteredValue);
+      setErrors((prev) => ({ ...prev, phone: validatePhone(filteredValue) }));
     }
   };
 
